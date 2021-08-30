@@ -1,9 +1,11 @@
 {
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
-  "extends": ["eslint:recommended",
+  "extends": [
+    "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended","prettier"
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
   "env": {
     "es6": true,
@@ -16,10 +18,10 @@
       "version": "detect"
     }
   },
-  "rules":{
-    "block-scoped-var":1,
+  "rules": {
+    "block-scoped-var": 1,
     "complexity": 0,
-    "camelcase":1,
+    "camelcase": 1,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/explicit-member-accessibility": 0,
     "@typescript-eslint/indent": 0,
@@ -31,13 +33,12 @@
       {
         "argsIgnorePattern": "^_"
       }
-    ],"no-console": [
+    ],
+    "no-console": [
       2,
       {
         "allow": ["warn", "error"]
       }
     ]
-
-
   }
 }
