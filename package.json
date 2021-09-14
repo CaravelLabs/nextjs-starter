@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "prepare": "husky install",
     "format": "prettier --write .",
