@@ -1,7 +1,11 @@
+import AppShell from '../modules/common/AppShell'
+
 export default function profile(): JSX.Element {
     return (
-        <div>
-            <p>Profile </p>
-        </div>
+        <AppShell>
+            <div>
+                <p>Profile </p>
+            </div>
+        </AppShell>
     )
 }
