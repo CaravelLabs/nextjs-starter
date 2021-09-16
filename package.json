@@ -1,29 +1,41 @@
 {
-  "name": "sample-nextjs",
-  "author": "Caravel-labs",
-  "version": "0.1.0",
-  "license": "MIT",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint . --ext ts --ext tsx --ext js"
-  },
-  "dependencies": {
-    "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
-    "next": "11.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "devDependencies": {
-    "@types/react": "17.0.18",
-    "@typescript-eslint/eslint-plugin": "^4.29.2",
-    "eslint": "^7.32.0",
-    "eslint-config-next": "11.1.0",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.3.2",
-    "typescript": "4.3.5"
-  }
+    "name": "sample-nextjs",
+    "author": "Caravel-labs",
+    "version": "0.1.0",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "npm run build && node server.js",
+        "lint": "eslint . --ext ts --ext tsx --ext js",
+        "prepare": "husky install",
+        "format": "prettier --write .",
+        "type-check": "tsc --pretty --noEmit"
+    },
+    "dependencies": {
+        "@material-ui/core": "^4.12.3",
+        "@material-ui/icons": "^4.11.2",
+        "next": "11.1.0",
+        "react": "17.0.2",
+        "react-dom": "17.0.2"
+    },
+    "devDependencies": {
+        "@types/react": "17.0.18",
+        "@typescript-eslint/eslint-plugin": "^4.29.2",
+        "eslint": "^7.32.0",
+        "eslint-config-next": "11.1.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-react": "^7.19.0",
+        "husky": "^7.0.2",
+        "lint-staged": "^11.1.2",
+        "prettier": "^2.3.2",
+        "typescript": "4.3.5"
+    },
+    "lint-staged": {
+        "*.{ts,tsx,js}": [
+            "npm run lint",
+            "npm run format"
+        ]
+    }
 }
