@@ -1,34 +1,107 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# **Overview**
+The NextJS starter project will help developers quickly stand-up a website using NextJS and supporting technologies. The following documentation will guide you through the setup of NextJS and other technologies such as:
 
-## Getting Started
+- Base 
+  - NextJS 
+  - TypeScript 
 
-First, after installing dependencies, run the development server as follow:
+- UI 
+  - MaterialUI 
 
-```bash
-npm run dev
-# or
-yarn dev
+- Data 
+  - Mobx 
+  - useSwr 
+
+- Code Quality 
+  - ESLint 
+  - Prettier 
+  - Husky 
+  - Jest 
+
+-Deployment 
+  - server.js (assuming a deployment to Linux-based Azure Web App) 
+
+
+## **Additional features in this documentation:** 
+
+- Theming with Material UI 
+
+- Paging system in NextJS 
+
+- Fetching data from a local API using SWR 
+
+- Storing data in memory using mobx 
+
+## Pre-requisites
+1. VS Code [https://code.visualstudio.com/Download]()
+2. Node [https://nodejs.org/en/download/]()
+
+# **Setup**
+
+Open package.json to see the following script:
+
+## Scripts
+```json
+"scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "npm run build && node server.js",
+        "lint": "eslint . --ext ts --ext tsx --ext js",
+        "prepare": "husky install",
+        "format": "prettier --write .",
+        "type-check": "tsc --pretty --noEmit"
+    }
+```
+These scripts refer to the different stages of developing an application:
+
+- dev - Runs next dev which starts Next.js in development mode
+- build - Runs next build which builds the application for production usage
+- start - Runs build and then for starts  production server
+- lint - Runs lint which sets up Next.js' with custom built ESLint configuration
+- prepare - Runs the prepare lifecycle before running the package to install the husky
+- format - Runs command to formats all file supported by Prettier in the current directory and its subdirectories.
+
+## Pages
+Next.js is built around the concept of pages. A page is a React Component exported from the .ts, or .tsx file in the pages directory.
+
+Under the _src_ folder you will find the pages. These pages are associated with a route based on their file name. For example pages/todo.tsx is mapped to /todo. 
+
+## ESlint configuration
+
+You will find the configuration file **.eslintrc.json** in the directory . 
+
+```json
+"parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
+    "env": {
+        "es6": true,
+        "browser": true,
+        "jest": true,
+        "node": true
+    },
+    
+    "rules": {
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+ 
+Here are some of the options that you can configure in ESLint:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Environments - which environments your script is designed to run in. Here we see the env parameter that supports the required environments.
+- Rules - Rules set the parameters that are followed by the company  and at the required error level.
+- Plugins - which third-party plugins define additional rules.  environments etc. for ESLint to use. 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Refer for more information to [https://eslint.org/docs/user-guide/configuring/]()
 
-## Learn More
+## **Other recommendations**
 
-To learn more about Next.js, take a look at the following resources:
-
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Next-Js - [https://nextjs.org/docs/getting-started]()
+Prettier configuration - [https://prettier.io/docs/en/configuration.html]()
+Husky blog - [https://www.freecodecamp.org/news/how-to-add-commit-hooks-to-git-with-husky-to-automate-code-tasks/]()
