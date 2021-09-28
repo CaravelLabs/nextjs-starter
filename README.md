@@ -102,6 +102,7 @@ Refer for more information to [https://eslint.org/docs/user-guide/configuring/](
 
 ## **Other recommendations**
 
-Next-Js - [https://nextjs.org/docs/getting-started]()
-Prettier configuration - [https://prettier.io/docs/en/configuration.html]()
-Husky blog - [https://www.freecodecamp.org/news/how-to-add-commit-hooks-to-git-with-husky-to-automate-code-tasks/]()
+- Next-Js - [https://nextjs.org/docs/getting-started]()
+- Prettier configuration - [https://prettier.io/docs/en/configuration.html]()
+- Husky blog - [https://www.freecodecamp.org/news/how-to-add-commit-hooks-to-git-with-husky-to-automate-code-tasks/]()
+- [A 2021 guide about structuring your Next.js project in a flexible and efficient way](https://dev.to/vadorequest/a-2021-guide-about-structuring-your-next-js-project-in-a-flexible-and-efficient-way-472)
