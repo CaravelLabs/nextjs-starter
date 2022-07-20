@@ -1,5 +1,5 @@
 import AppShell from '../modules/common/AppShell'
-import { Container, Typography } from '@material-ui/core'
+import { Container, Typography } from '@mui/material'
 import React from 'react'
 import { TextConstants } from '../modules/common/TextConstants'
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

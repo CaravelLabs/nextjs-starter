@@ -1,23 +1,16 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button } from '@material-ui/core'
+import TextField from '@mui/material/TextField'
+import { styled } from '@mui/material'
+import { Button } from '@mui/material'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
+const Div = styled('div')(() => ({
+    display: 'flex',
 }))
 
 export default function Todo(): JSX.Element {
-    const classes = useStyles()
-
     return (
-        <form className={classes.root}>
-            <div>
+        <form>
+            <Div>
                 <TextField
                     id="outlined-helperText"
                     label="Enter Task"
@@ -26,7 +19,7 @@ export default function Todo(): JSX.Element {
                     variant="outlined"
                 />
                 <Button>Submit</Button>
-            </div>
+            </Div>
         </form>
     )
 }

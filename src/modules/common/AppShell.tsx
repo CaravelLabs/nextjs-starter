@@ -1,23 +1,26 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
-import { Container, Toolbar, Box, makeStyles } from '@material-ui/core'
-import { Menu, AccountCircle, Toc } from '@material-ui/icons'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import PersonIcon from '@material-ui/icons/Person'
-import DehazeIcon from '@material-ui/icons/Dehaze'
-import AppBar from '@material-ui/core/AppBar'
-import Drawer from '@material-ui/core/Drawer'
+import { Container, Toolbar, Box, styled } from '@mui/material'
+import { Menu, AccountCircle, Toc } from '@mui/icons-material'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import PersonIcon from '@mui/icons-material/Person'
+import DehazeIcon from '@mui/icons-material/Dehaze'
+import AppBar from '@mui/material/AppBar'
+import Drawer from '@mui/material/Drawer'
 
 function AppShell({ children }: { children?: React.ReactNode }): JSX.Element {
-    const classes = useStyles()
-    const [open, setopen] = useState(false)
+    const BoxStyled = styled(Box)(() => ({
+        display: 'flex',
+    }))
+
+    const [open, setOpen] = useState(false)
     const { push } = useRouter()
     const tab = ['', 'profile', 'todo']
     const list = () => (
-        <div className={classes.listStyle}>
+        <BoxStyled>
             <List>
                 {['Hello User', 'Go to Profile', 'Test To Do List'].map(
                     (text, index) => (
@@ -40,53 +43,26 @@ function AppShell({ children }: { children?: React.ReactNode }): JSX.Element {
                     )
                 )}
             </List>
-        </div>
+        </BoxStyled>
     )
 
     return (
-        <Box className={classes.root}>
+        <>
             <AppBar position="relative" color="secondary">
                 <Toolbar>
-                    <Menu onClick={() => setopen(true)} color="primary">
+                    <Menu onClick={() => setOpen(true)} color="primary">
                         <DehazeIcon />
                     </Menu>
                 </Toolbar>
             </AppBar>
-            <Container className={classes.container}>
-                <Drawer
-                    className={classes.drawerstyle}
-                    open={open}
-                    onClose={() => setopen(false)}
-                >
+            <Container>
+                <Drawer open={open} onClose={() => setOpen(false)}>
                     {list()}
                 </Drawer>
                 {children}
             </Container>
-        </Box>
+        </>
     )
 }
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-    drawerstyle: {
-        width: '3000',
-        marginTop: '100',
-    },
-    container: {
-        paddingTop: theme.spacing(2),
-    },
-    listStyle: {
-        width: 'auto',
-        marginTop: '100',
-    },
-}))
 
 export default AppShell
