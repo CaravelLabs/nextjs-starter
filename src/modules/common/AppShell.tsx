@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
-import { Container, Toolbar, Box, styled } from '@mui/material'
+import { Container, Toolbar, Box, styled, Alert, Snackbar } from '@mui/material'
 import { Menu, AccountCircle, Toc } from '@mui/icons-material'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -10,8 +10,12 @@ import PersonIcon from '@mui/icons-material/Person'
 import DehazeIcon from '@mui/icons-material/Dehaze'
 import AppBar from '@mui/material/AppBar'
 import Drawer from '@mui/material/Drawer'
+import { StoreContext } from './StoreProvider'
+import { observer } from 'mobx-react-lite'
 
 function AppShell({ children }: { children?: React.ReactNode }): JSX.Element {
+    const store = useContext(StoreContext)
+    const toast = store.toast
     const BoxStyled = styled(Box)(() => ({
         display: 'flex',
     }))
@@ -60,9 +64,25 @@ function AppShell({ children }: { children?: React.ReactNode }): JSX.Element {
                     {list()}
                 </Drawer>
                 {children}
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }}
+                    open={toast.isOpen === true}
+                    autoHideDuration={3000}
+                    onClose={() => toast.close()}
+                >
+                    <Alert
+                        onClose={() => toast.close()}
+                        severity={toast.severity}
+                    >
+                        {toast.message}
+                    </Alert>
+                </Snackbar>
             </Container>
         </>
     )
 }
 
-export default AppShell
+export default observer(AppShell)

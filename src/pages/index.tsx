@@ -1,9 +1,13 @@
+import React, { useContext } from 'react'
+import { observer } from 'mobx-react-lite'
 import AppShell from '../modules/common/AppShell'
-import { Container, Typography } from '@mui/material'
-import React from 'react'
+import { Button, Container, Typography } from '@mui/material'
+import { StoreContext } from '../modules/common/StoreProvider'
 import { TextConstants } from '../modules/common/TextConstants'
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function Index() {
+    const store = useContext(StoreContext)
+
     return (
         <AppShell>
             <Container maxWidth="lg" style={{ marginTop: '40px' }}>
@@ -18,9 +22,18 @@ function Index() {
                 >
                     An initiative by Caravel Labs
                 </Typography>
+                <Button
+                    onClick={() => {
+                        store.successToast(
+                            'This alert has been configured through Mobx!'
+                        )
+                    }}
+                >
+                    Show alert
+                </Button>
             </Container>
         </AppShell>
     )
 }
 
-export default Index
+export default observer(Index)

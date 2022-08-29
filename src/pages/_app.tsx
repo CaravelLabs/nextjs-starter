@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app'
 import React from 'react'
 import Head from 'next/head'
 import { ThemeProvider } from '@mui/material'
+import StoreProvider from '../modules/common/StoreProvider'
 import theme from '../theme/theme'
 import { CssBaseline } from '@mui/material'
 import { TextConstants } from '../modules/common/TextConstants'
@@ -23,9 +24,10 @@ function MyApp(props: AppProps): JSX.Element {
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
             </Head>
             <ThemeProvider theme={theme}>
-                {' '}
-                <CssBaseline />
-                <Component {...pageProps} />
+                <StoreProvider>
+                    <CssBaseline />
+                    <Component {...pageProps} />
+                </StoreProvider>
             </ThemeProvider>
         </React.Fragment>
     )
