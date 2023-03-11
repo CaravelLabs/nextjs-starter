@@ -1,13 +1,12 @@
 import type { AppProps } from 'next/app'
 import React from 'react'
 import Head from 'next/head'
-import { ThemeProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
 import StoreProvider from '../modules/common/StoreProvider'
 import theme from '../theme/theme'
 import { CssBaseline } from '@mui/material'
 import { TextConstants } from '../modules/common/TextConstants'
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function MyApp(props: AppProps): JSX.Element {
     const { Component, pageProps } = props
 
