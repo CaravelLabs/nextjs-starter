@@ -4,7 +4,6 @@ import AppShell from '../modules/common/AppShell'
 import { Button, Container, Typography } from '@mui/material'
 import { StoreContext } from '../modules/common/StoreProvider'
 import { TextConstants } from '../modules/common/TextConstants'
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function Index() {
     const store = useContext(StoreContext)
 

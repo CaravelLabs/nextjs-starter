@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
-import { Container, Toolbar, Box, styled, Alert, Snackbar } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import { Container, Toolbar, Box, Alert, Snackbar } from '@mui/material'
 import { Menu, AccountCircle, Toc } from '@mui/icons-material'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
