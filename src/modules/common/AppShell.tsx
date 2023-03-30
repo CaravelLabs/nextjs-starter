@@ -27,7 +27,7 @@ function AppShell({ children }: { children?: React.ReactNode }): JSX.Element {
     const list = () => (
         <BoxStyled>
             <List>
-                {['Hello User', 'Go to Profile', 'Test To Do List'].map(
+                {['Hello User', 'Go to Profile', 'Todo Sample'].map(
                     (text, index) => (
                         <ListItem
                             button
