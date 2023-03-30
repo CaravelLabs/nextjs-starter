@@ -16,7 +16,7 @@ import { observer } from 'mobx-react-lite'
 
 function AppShell({ children }: { children?: React.ReactNode }): JSX.Element {
     const store = useContext(StoreContext)
-    const toast = store.toast
+    const toast = store?.toast
     const BoxStyled = styled(Box)(() => ({
         display: 'flex',
     }))
@@ -30,7 +30,6 @@ function AppShell({ children }: { children?: React.ReactNode }): JSX.Element {
                 {['Hello User', 'Go to Profile', 'Todo Sample'].map(
                     (text, index) => (
                         <ListItem
-                            button
                             key={text}
                             onClick={() => push(`/${tab[index]}`)}
                         >
@@ -70,15 +69,15 @@ function AppShell({ children }: { children?: React.ReactNode }): JSX.Element {
                         vertical: 'bottom',
                         horizontal: 'center',
                     }}
-                    open={toast.isOpen === true}
+                    open={toast?.isOpen === true}
                     autoHideDuration={3000}
-                    onClose={() => toast.close()}
+                    onClose={() => toast?.close()}
                 >
                     <Alert
-                        onClose={() => toast.close()}
-                        severity={toast.severity}
+                        onClose={() => toast?.close()}
+                        severity={toast?.severity}
                     >
-                        {toast.message}
+                        {toast?.message}
                     </Alert>
                 </Snackbar>
             </Container>

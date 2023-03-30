@@ -23,7 +23,7 @@ function Index() {
                 </Typography>
                 <Button
                     onClick={() => {
-                        store.successToast(
+                        store?.successToast(
                             'This alert has been configured through Mobx!'
                         )
                     }}
