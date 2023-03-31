@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/material'
 import { Unstable_Grid2 as Grid } from '@mui/material'
-import TodoList from './components/todoList'
-import TodoInput from './components/todoInput'
+import TodoList from '@/components/todo/todoList'
+import TodoInput from '@/components/todo/todoInput'
 
 function TodoApp(): JSX.Element {
     return (

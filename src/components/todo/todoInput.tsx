@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { TextField, Button } from '@mui/material'
 import { Unstable_Grid2 as Grid } from '@mui/material'
-import todoStore from '../todoModel'
+import todoStore from '@/models/TodoModel'
 import { observer } from 'mobx-react-lite'
 
 function TodoInput(): JSX.Element {

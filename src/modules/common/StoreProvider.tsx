@@ -1,6 +1,6 @@
 import { createContext, ReactNode } from 'react'
 import { useLocalObservable } from 'mobx-react-lite'
-import { RootStore } from '../../model/RootStore'
+import { RootStore } from '@/models/RootStore'
 
 export const StoreContext = createContext<RootStore | undefined>(undefined)
 

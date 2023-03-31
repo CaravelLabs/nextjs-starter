@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 import { Unstable_Grid2 as Grid } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { Todo } from '../todoModel'
+import { Todo } from '@/models/TodoModel'
 
 type TodoProps = {
     todo: Todo

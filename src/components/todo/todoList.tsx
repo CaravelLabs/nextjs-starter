@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { List } from '@mui/material'
 import TodoItem from './todoItem'
-import todoViewModel, { Todo } from '../todoModel'
+import todoViewModel, { Todo } from '@/models/TodoModel'
 
 function TodoList() {
     const handleToggle = (todo: Todo) => {
