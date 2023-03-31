@@ -11,7 +11,7 @@ function MyApp(props: AppProps): JSX.Element {
     const { Component, pageProps } = props
 
     return (
-        <React.Fragment>
+        <>
             <Head>
                 <title>{TextConstants.ApplicationName}</title>
                 <meta charSet="utf-8" />
@@ -28,7 +28,7 @@ function MyApp(props: AppProps): JSX.Element {
                     <Component {...pageProps} />
                 </StoreProvider>
             </ThemeProvider>
-        </React.Fragment>
+        </>
     )
 }
 export default MyApp
