@@ -11,28 +11,34 @@ interface Message {
 
 const ChatBox: React.FC = () => {
     const [messages, setMessages] = useState<Message[]>([])
-    const { completion, input, handleInputChange, handleSubmit, isLoading } =
-        useCompletion({
-            api: '/api/completion/route',
-            onFinish: (prompt, completion) => {
-                console.log(prompt, completion)
-                const promptMessage: Message = {
-                    content: prompt,
-                    dateCreated: new Date(),
-                    type: 'sender',
-                }
-                messages.push(promptMessage)
-                setMessages(messages)
-                const message: Message = {
-                    content: completion,
-                    dateCreated: new Date(),
-                    type: 'receiver',
-                }
-                messages.push(message)
-                setMessages(messages)
-            },
-            initialInput: '',
-        })
+    const {
+        completion,
+        input,
+        handleInputChange,
+        handleSubmit,
+        isLoading,
+        setInput,
+    } = useCompletion({
+        api: '/api/completion/route',
+        onFinish: (prompt, completion) => {
+            setInput('')
+            const promptMessage: Message = {
+                content: prompt,
+                dateCreated: new Date(),
+                type: 'sender',
+            }
+            messages.push(promptMessage)
+            setMessages(messages)
+            const message: Message = {
+                content: completion,
+                dateCreated: new Date(),
+                type: 'receiver',
+            }
+            messages.push(message)
+            setMessages(messages)
+        },
+        initialInput: '',
+    })
 
     return (
         <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
