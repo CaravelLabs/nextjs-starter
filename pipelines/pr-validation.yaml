@@ -1,0 +1,23 @@
+name: "pr-validation"
+
+trigger: none
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  - template: variables.yml
+  - group: "build-verification"
+
+jobs:
+  # - template: templates/jobs/analyze-infra.yml #SONAR CLOUD EXCLUDED
+  - job: PRValidation
+    displayName: Build, test and analyze common, functions and web
+    steps:
+      - template: templates/steps/detect-secrets.yml
+      - template: templates/steps/build-common.yml
+      - template: templates/steps/test-common.yml
+      - template: templates/steps/build-functions.yml
+      - template: templates/steps/test-functions.yml
+      - template: templates/steps/build-web.yml
+      - template: templates/steps/test-web.yml

@@ -1,0 +1,17 @@
+steps:
+  - task: ArchiveFiles@2
+    displayName: "Zip /web"
+    inputs:
+      rootFolderOrFile: "$(System.DefaultWorkingDirectory)/web"
+      includeRootFolder: false
+      archiveType: "zip"
+      archiveFile: "$(Pipeline.Workspace)/web.zip"
+      replaceExistingArchive: true
+
+  - task: PublishPipelineArtifact@1
+    displayName: "Publish > web"
+    inputs:
+      targetPath: "$(Pipeline.Workspace)/web.zip"
+      artifactName: "web-drop"
+      artifactType: "pipeline"
+      parallel: true

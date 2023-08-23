@@ -1,0 +1,25 @@
+steps:
+  - template: configure-node18.yml
+
+  - task: Cache@2
+    inputs:
+      key: next | $(Agent.OS) | web/package-lock.json
+      path: "$(System.DefaultWorkingDirectory)/web/.next/cache"
+    displayName: "Cache .next/cache"
+
+  - bash: |
+      npm install npm -g
+      cd common
+      npm install
+    displayName: "Prepare /web"
+
+  - bash: |
+      cd web
+      npm install
+      npm run lint      
+      npm run build
+    displayName: "build /web"
+    env:
+      ANALYZE_BUNDLE: "false"
+      NEXT_PUBLIC_APPINSIGHTS_INSTRUMENTATIONKEY: $(application_insights_instrumentation_key)
+      NEXT_PUBLIC_APPLICATIONINSIGHTS_CONNECTION_STRING: $(application_insights_connection_string)

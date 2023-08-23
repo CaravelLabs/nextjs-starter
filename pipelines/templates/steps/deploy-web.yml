@@ -1,0 +1,28 @@
+steps:
+  - task: DownloadPipelineArtifact@2
+    displayName: "Download > web.zip"
+    inputs:
+      artifact: "web-drop"
+      patterns: "**/web.zip"
+      path: "$(Build.ArtifactStagingDirectory)"
+
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: "$(azure_subscription_connection)"
+      appType: "webAppLinux"
+      appName: $(web_app_name)
+      package: "$(Build.ArtifactStagingDirectory)/web.zip"
+      startUpCommand: "NODE_ENV=production npm run start"
+      deploymentMethod: "runFromPackage"
+      appSettings: >
+        -NEXTAUTH_URL $(NEXTAUTH_URL)
+        -NEXTAUTH_SECRET $(NEXTAUTH_SECRET)
+        -FLAG $(FLAG)
+    displayName: "deploy web app"
+
+  - task: AzureAppServiceManage@0
+    inputs:
+      azureSubscription: "$(azure_subscription_connection)"
+      Action: "Restart Azure App Service"
+      WebAppName: $(web_app_name)
+    displayName: "restart web app"

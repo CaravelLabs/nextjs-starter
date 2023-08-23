@@ -1,0 +1,31 @@
+# Manual Approval Terraform - uses the following ...
+# https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform
+# Will wait for changes to be approved if there are any resources
+# which are  being destroyed
+######################################################################
+
+jobs:
+  - job: "waitForValidation"
+    displayName: "Wait > Wait for manual approval"
+    pool: "server"
+    timeoutInMinutes: "4320" # job times out in 3 days
+    steps:
+      - task: ManualValidation@0
+        timeoutInMinutes: "1440" # task times out in 1 day
+        inputs:
+          notifyUsers: $(pipeline_notification_recipients)
+          instructions: "There are resources being destroyed please review the output of Terraform plan before approving."
+          onTimeout: "reject"
+
+  - job: "TerraformApprove"
+    displayName: "Terraform > install, init & apply"
+    dependsOn: "waitForValidation"
+    steps:
+      - template: ../steps/terraform-init.yml
+
+      - task: TerraformCLI@0
+        inputs:
+          command: "apply"
+          workingDirectory: $(System.DefaultWorkingDirectory)/infra/src
+          environmentServiceName: "$(azure_subscription_connection)"
+        displayName: "Run > terraform apply"

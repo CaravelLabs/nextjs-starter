@@ -1,0 +1,25 @@
+# Run Checkov, upload results and optionally halt if there any problems found
+######################################################################
+
+jobs:
+  - job: "runCheckov"
+    displayName: "Checkov > Pull, run and publish results of Checkov scan"
+    steps:
+      - bash: |
+          docker pull bridgecrew/checkov
+        workingDirectory: $(System.DefaultWorkingDirectory)/infra/src
+        displayName: "Pull > bridgecrew/checkov"
+
+      - bash: |
+          docker run --volume $(pwd):/tf bridgecrew/checkov --directory /tf --output junitxml --soft-fail > $(pwd)/CheckovReport.xml
+        workingDirectory: $(System.DefaultWorkingDirectory)/infra/src
+        displayName: "Run > checkov"
+
+      - task: PublishTestResults@2
+        inputs:
+          testRunTitle: "Checkov Results"
+          failTaskOnFailedTests: false
+          testResultsFormat: "JUnit"
+          testResultsFiles: "CheckovReport.xml"
+          searchFolder: "$(System.DefaultWorkingDirectory)/infra/src"
+        displayName: "Publish > Checkov scan results"
