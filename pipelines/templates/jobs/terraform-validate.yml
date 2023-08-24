@@ -1,0 +1,19 @@
+# Validate Terraform - uses the following ...
+# https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform
+######################################################################
+
+jobs:
+  - job: "TerraformJobs"
+    displayName: "Terraform > install, init and validate"
+    continueOnError: false
+    steps:
+      - template: ../steps/terraform-init.yml
+
+      - task: TerraformCLI@0
+        inputs:
+          command: "validate"
+          workingDirectory: $(System.DefaultWorkingDirectory)/infra/src
+          environmentServiceName: "$(azure_subscription_connection)"
+        displayName: "Run > terraform validate"
+
+

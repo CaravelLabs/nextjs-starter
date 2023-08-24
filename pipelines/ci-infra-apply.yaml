@@ -1,0 +1,12 @@
+name: "ci-infra"
+
+trigger: none
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  - group: "ci-variables"
+
+jobs:
+  - template: ./templates/jobs/terraform-auto-approval.yml

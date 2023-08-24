@@ -1,0 +1,18 @@
+# Auto Approval Terraform - uses the following ...
+# https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform
+# Will run the terraform apply if there are are only changes and
+# nothing to be destroyed
+######################################################################
+
+jobs:
+  - job: "TerraformAuto"
+    displayName: "Terraform > install, init & apply"
+    steps:
+      - template: ../steps/terraform-init.yml
+
+      - task: TerraformCLI@0
+        inputs:
+          command: "apply"
+          workingDirectory: $(System.DefaultWorkingDirectory)/infra/src
+          environmentServiceName: "$(azure_subscription_connection)"
+        displayName: "Run > terraform apply"

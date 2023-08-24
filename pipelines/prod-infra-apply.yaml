@@ -1,0 +1,12 @@
+name: "prod-infra"
+
+trigger: none
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  - group: "prod-variables"
+
+jobs:
+  - template: ./templates/jobs/terraform-auto-approval.yml

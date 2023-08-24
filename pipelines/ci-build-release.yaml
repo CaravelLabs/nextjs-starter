@@ -1,0 +1,20 @@
+name: "ci-build-release"
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  - template: variables.yml
+  - group: "build-verification"
+  - group: "ci-variables"
+
+stages:
+  - template: ./templates/stages/build-release.yml
+    parameters:
+      environment: CI

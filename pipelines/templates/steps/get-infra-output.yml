@@ -1,0 +1,8 @@
+steps:
+  - bash: |
+      cd infra/src
+      echo "##vso[task.setvariable variable=application_insights_instrumentation_key;issecret=true]$(terraform output -raw application_insights_instrumentation_key)"
+      echo "##vso[task.setvariable variable=application_insights_connection_string;issecret=true]$(terraform output -raw application_insights_connection_string)"
+      echo "##vso[task.setvariable variable=web_app_name]$(terraform output -raw web_app_name)"
+    failOnStderr: true
+    displayName: "get pipeline variables from terraform"
