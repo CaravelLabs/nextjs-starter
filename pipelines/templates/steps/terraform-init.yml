@@ -8,8 +8,7 @@ steps:
       cd infra/src
       echo 'subscription_id = "'$(ARM_SUBSCRIPTION_ID)'"' | tee -a terraform.tfvars
       echo 'main_resource_group_name = "'$(main_resource_group_name)'"' | tee -a terraform.tfvars
-      echo 'tf_aad_client_id = "'$(tf_aad_client_id)'"' | tee -a terraform.tfvars
-      echo 'tf_aad_client_secret = "'$(tf_aad_client_secret)'"' | tee -a terraform.tfvars
+      echo'tenant_id'="'$(ARM_TENANT_ID)'"' | tee -a terraform.tfvars
       echo 'environment = "'$(environment)'"' | tee -a terraform.tfvars
       echo 'naming_prefix = "'$(naming_prefix)'"' | tee -a terraform.tfvars
       echo 'location = "'$(location)'"' | tee -a terraform.tfvars
