@@ -18,15 +18,6 @@ variable tenant_id {
   description = "The Azure tenant where the resources are deployed to"
 }
 
-variable tf_aad_client_id {
-  type = string
-  description = "The Service Principal Client ID used to manage Azure AD resources"
-}
-
-variable tf_aad_client_secret {
-  type = string
-  description = "The Service Principal Client Secret used to manage Azure AD resources"
-}
 
 variable main_resource_group_name {
   type = string
@@ -61,22 +52,4 @@ variable web_tier {
   type        = string
   description = "VM tier for the Web App plan"
   default = "B1"
-}
-
-variable api_always_on {
-  type        = string
-  description = "Whether the API will be always on"
-  default = "true"
-}
-
-variable api_tier {
-  type        = string
-  description = "VM size for the API App plan"
-  default = "B1"
-}
-
-
-variable custom_domain_url {
-  type       = string
-  description = "Custom domain URL for the Application"
 }
