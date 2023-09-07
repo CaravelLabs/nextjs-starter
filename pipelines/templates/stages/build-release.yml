@@ -1,0 +1,54 @@
+stages:
+  - stage: "infraValidateAnalyze"
+    displayName: "Infra - Validate"
+    jobs:
+      - template: ../jobs/terraform-validate.yml
+      - template: ../jobs/run-checkov.yml
+      # - template: ../jobs/analyze-infra.yml
+
+  - stage: "planTerraform"
+    displayName: "Terraform - Plan"
+    dependsOn:
+      - "infraValidateAnalyze"
+    jobs:
+      - template: ../jobs/terraform-plan.yml
+
+  - stage: "autoTerraform"
+    displayName: "Terraform - Auto Approval"
+    dependsOn:
+      - "planTerraform"
+    condition: |
+      and
+        (
+          succeeded(),
+          eq(dependencies.planTerraform.outputs['TerraformJobs.setvar.HAS_CHANGES_ONLY'], 'true')
+        )
+    jobs:
+      - template: ../jobs/terraform-auto-approval.yml
+
+  - stage: "approveTerraform"
+    displayName: "Terraform - Manual Approval"
+    dependsOn:
+      - "planTerraform"
+    condition: |
+      and
+        (
+          succeeded(),
+          eq(dependencies.planTerraform.outputs['TerraformJobs.setvar.HAS_DESTROY_CHANGES'], 'true')
+        )
+    jobs:
+      - template: ../jobs/terraform-manual-approval.yml
+
+  - stage: "deployCode"
+    displayName: "Code - Build - Deploy"
+    dependsOn:
+      - "approveTerraform"
+      - "autoTerraform"
+    condition: |
+      and
+        (
+          in(dependencies.approveTerraform.result, 'Succeeded', 'SucceededWithIssues', 'Skipped'),
+          in(dependencies.autoTerraform.result, 'Succeeded', 'SucceededWithIssues', 'Skipped')
+        )
+    jobs:
+      - template: ../jobs/web-build.yml

@@ -14,10 +14,6 @@ steps:
       package: "$(Build.ArtifactStagingDirectory)/web.zip"
       startUpCommand: "NODE_ENV=production npm run start"
       deploymentMethod: "runFromPackage"
-      appSettings: >
-        -NEXTAUTH_URL $(NEXTAUTH_URL)
-        -NEXTAUTH_SECRET $(NEXTAUTH_SECRET)
-        -FLAG $(FLAG)
     displayName: "deploy web app"
 
   - task: AzureAppServiceManage@0

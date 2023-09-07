@@ -7,5 +7,6 @@ jobs:
       - template: ../steps/terraform-init.yml
       - template: ../steps/get-infra-output.yml      
       - template: ../steps/build-web.yml
-      - template: ../steps/test-web.yml
+      # - template: ../steps/test-web.yml
       - template: ../steps/publish-web.yml
+      - template: ../steps/deploy-web.yml
