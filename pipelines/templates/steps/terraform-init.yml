@@ -8,15 +8,12 @@ steps:
       cd infra/src
       echo 'subscription_id = "'$(ARM_SUBSCRIPTION_ID)'"' | tee -a terraform.tfvars
       echo 'main_resource_group_name = "'$(main_resource_group_name)'"' | tee -a terraform.tfvars
-      echo 'tf_aad_client_id = "'$(tf_aad_client_id)'"' | tee -a terraform.tfvars
-      echo 'tf_aad_client_secret = "'$(tf_aad_client_secret)'"' | tee -a terraform.tfvars
       echo 'environment = "'$(environment)'"' | tee -a terraform.tfvars
       echo 'naming_prefix = "'$(naming_prefix)'"' | tee -a terraform.tfvars
       echo 'location = "'$(location)'"' | tee -a terraform.tfvars
       echo 'web_always_on = "'$(web_always_on)'"' | tee -a terraform.tfvars
       echo 'web_tier = "'$(web_tier)'"' | tee -a terraform.tfvars      
-      echo 'api_always_on = "'$(api_always_on)'"' | tee -a terraform.tfvars
-      echo 'api_tier = "'$(api_tier)'"' | tee -a terraform.tfvars
+     
     failOnStderr: true
     displayName: "Run > terraform.tfvars file"
 
