@@ -3,18 +3,17 @@ steps:
 
   - task: Cache@2
     inputs:
-      key: next | $(Agent.OS) | web/package-lock.json
-      path: "$(System.DefaultWorkingDirectory)/web/.next/cache"
+      key: next | $(Agent.OS) | package-lock.json
+      path: "$(System.DefaultWorkingDirectory)/.next/cache"
     displayName: "Cache .next/cache"
 
-  - bash: |
-      npm install npm -g
-      cd common
-      npm install
-    displayName: "Prepare /web"
+  # - bash: |
+  #     npm install npm -g
+  #     cd common
+  #     npm install
+  #   displayName: "Prepare /web"
 
   - bash: |
-      cd web
       npm install
       npm run lint      
       npm run build
