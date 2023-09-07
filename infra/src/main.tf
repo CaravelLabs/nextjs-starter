@@ -23,6 +23,12 @@ provider "azurerm" {
   features {}
 }
 
+data "azurerm_resource_group" "ch" {
+
+  name = var.main_resource_group_name
+
+}
+
 resource "azurerm_service_plan" "ch" {
   name                = "${var.naming_prefix}-${var.environment}-asp"
   location            = var.location
@@ -64,6 +70,8 @@ resource "azurerm_linux_web_app" "ch" {
     }
   }
 }
+
+
 
 resource "azurerm_cosmosdb_account" "ch" {
   name                               = "${var.naming_prefix}-${var.environment}-cdb"
