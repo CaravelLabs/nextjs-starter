@@ -2,8 +2,8 @@ steps:
   - task: ArchiveFiles@2
     displayName: "Zip /web"
     inputs:
-      rootFolderOrFile: "$(System.DefaultWorkingDirectory)/web"
-      includeRootFolder: false
+      rootFolderOrFile: "$(System.DefaultWorkingDirectory)"
+      includeRootFolder: true
       archiveType: "zip"
       archiveFile: "$(Pipeline.Workspace)/web.zip"
       replaceExistingArchive: true

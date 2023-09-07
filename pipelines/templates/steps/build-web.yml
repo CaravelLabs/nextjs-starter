@@ -1,11 +1,11 @@
 steps:
   - template: configure-node18.yml
 
-  - task: Cache@2
-    inputs:
-      key: next | $(Agent.OS) | package-lock.json
-      path: "$(System.DefaultWorkingDirectory)/.next/cache"
-    displayName: "Cache .next/cache"
+  # - task: Cache@2
+  #   inputs:
+  #     key: next | $(Agent.OS) | package-lock.json
+  #     path: "$(System.DefaultWorkingDirectory)/.next/cache"
+  #   displayName: "Cache .next/cache"
 
   # - bash: |
   #     npm install npm -g
